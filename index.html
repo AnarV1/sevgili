@@ -13,7 +13,7 @@
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjamF6am9nYXB6dXVoeGJieG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2MzI4MjcsImV4cCI6MjA3NjIwODgyN30.7XBqphPnFhUie3KVMMePUzJLVkWJGgJc0O9av6qCZas";
 
         // Supabase client
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // IP-ni əldə edən funksiya
         async function getPublicIP() {
@@ -45,7 +45,7 @@
             const visit_time = getBakuTime();
 
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from("visitors")
                     .insert([{ ip_address: ip, visit_time }]);
 
