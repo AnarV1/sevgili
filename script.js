@@ -100,3 +100,61 @@ function startMusic() {
 // bəzi brauzerlərdə autoplay üçün toxunma icazəsi lazımdır:
 document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
+
+const poemText = document.querySelector("#poemLines p");
+
+const poems = [
+  `Sən mənim ən gözəl təsadüfümsən<br>
+  Gözlərinə baxanda dünyanın səsi kəsilir...<br>
+  Ürəyim yalnız sənin üçün döyünür<br>
+  Uzaq olsan belə, düşüncələrimdə həmişə yanımdasan`,
+
+  `Sən yoxsan hər şey yerindədi,<br>
+  amma mən deyiləm…<br>
+  Darıxmaq elə səni sevməyin cəzasıymış,<br>
+  mən indi hər gün o cəzanı çəkirəm`,
+
+  `Hər kəs məni gülür sanır,<br>
+  amma içimdə sənin adınla ağlayıram...`,
+
+  `Sən yoxsan deyə hər şey boş gəlir…<br>
+  Söhbət eləməyə adam da çoxdu,<br>
+  amma sənin kimi dinləyən yoxdu.<br>
+  Gülürəm, amma içimdə səsin çatmır.<br>
+  Bilirsən, mən sadəcə darıxmıram —<br>
+  səndən sonra heç kim kimi hiss eləmirəm…`,
+
+  `Sən gedəndən bəri, içimdə hər şey səssizdi.<br>
+  Darıxmaq deyil bu… sanki içimdən sən keçib getmisən.`,
+
+  `Bir baxışınla düzələn dünyam, indi sənin yoxluğunda dağılır.<br>
+  Bir dəfə bax ardına, mən hələ də ordayam – səni gözləyirəm.`,
+
+  `Ağlamaq hissini səndən öyrəndim,tək ağladığım qadın sənsən getmə deyə...<br>
+  Gecə ürəyim ağrıyanda rahatlığı sənin pəncərinin altında tapdım...`,
+
+  `Yanımda deyilsən amma gözümün daldığı hər yerdəsən`,
+
+  `Məsələ heç vaxt darıxmaq deyildi daha pis şeylərdə var həyatda.<br>
+  Məsələn ondan ötrü darıxdığımı deməyə utanmaq kimi.<br>
+  Məsələn o ümidin heç vaxt ölməyəcəyini bilmək kimi.<br>
+  Məsələn heç kimin yıxa bilmədiyi insanın onu ayaqda saxlayanın yıxması kimi.<br>
+  Məsələ sadəcə budu.`
+];
+
+let say = 0;
+
+function changePoem() {
+  poemText.style.opacity = 0;
+  poemText.style.transform = "translateY(10px)";
+
+  setTimeout(() => {
+    say = (say + 1) % poems.length;
+    poemText.innerHTML = poems[say];
+    poemText.style.opacity = 1;
+    poemText.style.transform = "translateY(0)";
+  }, 800);
+}
+
+// hər 6 saniyədən bir bənd dəyişsin
+setInterval(changePoem, 6000);

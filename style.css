@@ -6,16 +6,16 @@
 }
 
 body {
-    background: linear-gradient(180deg, #ffd1dc, #ffe6f2);
+    background: linear-gradient(180deg, #e4c9b0);
     color: #333;
     overflow-x: hidden;
     font-family: 'Nunito', sans-serif;
 }
 
-iframe {
+/* iframe { */
     /* width: 0px;
     height: 0px; */
-}
+/* } */
 
 /* --- Dizaynlı Navbar --- */
 .navbar {
@@ -38,6 +38,12 @@ iframe {
     transition: all 0.3s ease;
 }
 
+.navbar h1 {
+    font-size: 22px;
+    color: #a57c00a8;
+    font-weight: bold;
+}
+
 .nav-left,
 .nav-right {
     font-size: 24px;
@@ -57,7 +63,7 @@ iframe {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 3px solid #ff69b4;
+    border: 3px solid #FFD700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,18 +84,18 @@ iframe {
 
     0%,
     100% {
-        box-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
+        box-shadow: 0 0 8px #ffbf0000;
     }
 
     50% {
-        box-shadow: 0 0 16px rgba(255, 105, 180, 0.8);
+        box-shadow: 0 0 16px #FFD700;
     }
 }
 
 /* --- home hissəsi --- */
 .home {
     text-align: center;
-    padding: 130px 20px 60px;
+    padding: 120px 20px 0;
     animation: fadeIn 1.5s ease;
 }
 
@@ -112,22 +118,22 @@ iframe {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px 10px;
+    /* padding: 40px 20px 10px; */
 }
 
 .msg-box {
     background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #ffb6c1;
+    border: 2px solid #FFD700;
     border-radius: 20px;
     padding: 25px;
-    box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 182, 193, 0.302);
     text-align: center;
     max-width: 350px;
     line-height: 1.7;
     animation: fadeIn 2s ease;
 }
 
-.msg-box p {
+#poemLines p {
     color: #444;
     font-size: 15px;
     font-weight: bold;
@@ -137,8 +143,8 @@ iframe {
 .signature {
     display: block;
     font-size: 14px;
-    color: #ff69b4;
-    font-style: italic;
+    color: #d6b11a;
+    font-style: bold;
 }
 
 /* --- Animasiya --- */
@@ -224,4 +230,34 @@ iframe {
 
 .next {
     right: 10px;
+}
+
+.msg-box {
+  width: 90%;
+  max-width: 350px;
+  margin: 30px 0 0;
+  background: #fff6fa;
+  border: 2px solid #ffd1dc;
+  border-radius: 16px;
+  padding: 20px 25px;
+  text-align: center;
+  color: #d63384;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+}
+
+#poemLines p {
+  margin: 6px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.signature {
+    display: block;
+    font-size: 14px;
+    color: #d6b11a;
+    font-style: bold;
 }
