@@ -12,6 +12,11 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+iframe {
+    /* width: 0px;
+    height: 0px; */
+}
+
 /* --- Dizaynlı Navbar --- */
 .navbar {
     position: fixed;
@@ -81,14 +86,14 @@ body {
     }
 }
 
-/* --- Hero hissəsi --- */
-.hero {
+/* --- home hissəsi --- */
+.home {
     text-align: center;
     padding: 130px 20px 60px;
     animation: fadeIn 1.5s ease;
 }
 
-.hero h1 {
+.home h1 {
     font-size: 30px;
     color: #ff69b4;
     margin-bottom: 10px;
@@ -96,7 +101,7 @@ body {
     animation: float 2s infinite ease-in-out;
 }
 
-.hero p {
+.home p {
     font-size: 16px;
     font-weight: bold;
     color: #555;
@@ -107,7 +112,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px 100px;
+    padding: 40px 20px 10px;
 }
 
 .msg-box {
@@ -125,7 +130,7 @@ body {
 .msg-box p {
     color: #444;
     font-size: 15px;
-    font-weight: bold; 
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
@@ -162,11 +167,61 @@ body {
 }
 
 @media (max-width: 600px) {
-    .hero h1 {
+    .home h1 {
         font-size: 26px;
     }
 
     .msg-box {
         font-size: 15px;
     }
+}
+
+.carousel {
+    position: relative;
+    width: 90%;
+    max-width: 350px;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(255, 182, 193, 0.4);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slides img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* keçid düymələri */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    border: none;
+    font-size: 22px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #ff69b4;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
 }

@@ -63,3 +63,40 @@ style.innerHTML = `
   }
 `;
 document.head.appendChild(style);
+
+// 💞 Şəkil karuseli (avtomatik və əl ilə keçid)
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let index = 0;
+
+// Şəkil dəyişmə funksiyası
+function showSlide(i) {
+  if (i < 0) index = images.length - 1;
+  else if (i >= images.length) index = 0;
+  else index = i;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Düymələrlə idarə
+prevBtn.addEventListener("click", () => showSlide(index - 1));
+nextBtn.addEventListener("click", () => showSlide(index + 1));
+
+// Avtomatik dəyişmə (5 saniyədə bir)
+setInterval(() => {
+  showSlide(index + 1);
+}, 5000);
+
+
+const music = document.getElementById("bgMusic");
+music.volume = 0.4;
+
+function startMusic() {
+  music.play().catch(() => console.log("Autoplay bloklandı, istifadəçi toxunmalıdır."));
+}
+
+// bəzi brauzerlərdə autoplay üçün toxunma icazəsi lazımdır:
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
