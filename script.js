@@ -1,39 +1,6 @@
-const SUPABASE_URL = "https://gcjazjogapzuuhxbbxnd.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjamF6am9nYXB6dXVoeGJieG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2MzI4MjcsImV4cCI6MjA3NjIwODgyN30.7XBqphPnFhUie3KVMMePUzJLVkWJGgJc0O9av6qCZas";
+// const SUPABASE_URL = "https://gcjazjogapzuuhxbbxnd.supabase.co";
+// const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjamF6am9nYXB6dXVoeGJieG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2MzI4MjcsImV4cCI6MjA3NjIwODgyN30.7XBqphPnFhUie3KVMMePUzJLVkWJGgJc0O9av6qCZas";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-async function logVisitor() {
-  try {
-    // IP-ni tapırıq
-    const res = await fetch("https://api.ipify.org?format=json");
-    const data = await res.json();
-    const ip = data.ip;
-
-    // Bakı vaxtını hesablamaq (UTC+4)
-    const now = new Date();
-    const utc = now.getTime() + now.getTimezoneOffset() * 60000; // UTC millis
-    const bakuTime = new Date(utc + 4 * 60 * 60000); // +4 saat fərqi
-
-    const formattedTime = bakuTime.toLocaleString("az-AZ", {
-      timeZone: "Asia/Baku",
-      hour12: false,
-    });
-
-    // Supabase-ə yazırıq
-    const { error } = await supabase
-      .from("visitors")
-      .insert([{ ip_address: ip, visit_time: formattedTime }]);
-
-    if (error) console.error("Supabase insert error:", error);
-    else console.log("Visit logged:", ip, formattedTime);
-  } catch (err) {
-    console.error("Logging failed:", err);
-  }
-}
-
-// Sayt yüklənəndə işləsin
-window.addEventListener("DOMContentLoaded", logVisitor);
 
 
 let isTouching = false;

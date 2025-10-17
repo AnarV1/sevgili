@@ -5,7 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Səni Sevirəm Gülüm 🌹💗</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+
+    <script>
+        // --- Öz layihə məlumatlarını bura əlavə et ---
+        const SUPABASE_URL = "https://gcjazjogapzuuhxbbxnd.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjamF6am9nYXB6dXVoeGJieG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2MzI4MjcsImV4cCI6MjA3NjIwODgyN30.7XBqphPnFhUie3KVMMePUzJLVkWJGgJc0O9av6qCZas";
+
+        // Supabase client
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // IP-ni əldə edən funksiya
+        async function getPublicIP() {
+            try {
+                const res = await fetch("https://api.ipify.org?format=json");
+                if (!res.ok) throw new Error("IP alınmadı");
+                const data = await res.json();
+                return data.ip;
+            } catch (err) {
+                console.error("IP xətası:", err);
+                return "unknown";
+            }
+        }
+
+        // Bakı vaxtını qaytaran funksiya (UTC+4)
+        function getBakuTime() {
+            const now = new Date();
+            const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+            const baku = new Date(utc + 4 * 60 * 60000);
+            return baku.toLocaleString("az-AZ", {
+                timeZone: "Asia/Baku",
+                hour12: false,
+            });
+        }
+
+        // Supabase-ə yazan funksiya
+        async function logVisitor() {
+            const ip = await getPublicIP();
+            const visit_time = getBakuTime();
+
+            try {
+                const { error } = await supabase
+                    .from("visitors")
+                    .insert([{ ip_address: ip, visit_time }]);
+
+                if (error) console.error("Supabase insert error:", error);
+                else console.log("Ziyarətçi qeyd olundu:", ip, visit_time);
+            } catch (err) {
+                console.error("Xəta:", err);
+            }
+        }
+
+        // Sayt yüklənəndə yaz
+        window.addEventListener("DOMContentLoaded", logVisitor);
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
